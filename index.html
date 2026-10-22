@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADMA 2026 Tutorial: Agentic Graph Learning</title>
+<meta name="description" content="ADMA 2026 Tutorial on Agentic Graph Learning: Foundations and Frontiers. Hong Kong, 13 November 2026.">
+<style>
+  :root {
+    --navy: #1F2A44;
+    --navy2: #2E3B5E;
+    --coral: #E07A5F;
+    --ink: #222831;
+    --muted: #5B6375;
+    --bg: #FFFFFF;
+    --soft: #F4F6FA;
+    --line: #E2E6EE;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.65;
+  }
+  a { color: var(--navy2); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.95);
+    border-bottom: 1px solid var(--line); backdrop-filter: blur(6px);
+  }
+  nav .wrap { display: flex; gap: 22px; align-items: center; height: 52px; overflow-x: auto; white-space: nowrap; }
+  nav b { color: var(--navy); margin-right: auto; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 15px; }
+  nav a:hover { color: var(--coral); }
+
+  /* hero */
+  header.hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+    color: #fff; padding: 72px 0 64px; text-align: center;
+  }
+  .venue { letter-spacing: .14em; text-transform: uppercase; font-size: 14px; color: #F2B8A6; font-weight: 600; }
+  .hero h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.2; margin: 14px 0 6px; }
+  .hero h2 { font-weight: 400; font-size: clamp(18px, 2.6vw, 24px); margin: 0 0 26px; color: #DCE2EE; }
+  .people { font-size: 18px; margin: 0; }
+  .affil { font-size: 15px; color: #C9D1E2; margin: 4px 0 18px; }
+  .when { font-size: 16px; margin: 0 0 30px; }
+  .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 10px 20px; border-radius: 6px; text-decoration: none;
+    font-weight: 600; font-size: 15px; border: 1.5px solid #fff; color: #fff;
+  }
+  .btn:hover { background: #fff; color: var(--navy); }
+  .btn.soon { opacity: .55; pointer-events: none; border-style: dashed; }
+  .btn small { font-weight: 400; opacity: .85; }
+
+  /* sections */
+  section { padding: 64px 0; }
+  section.alt { background: var(--soft); }
+  section h2.sec {
+    font-size: 28px; color: var(--navy); margin: 0 0 24px; padding-bottom: 10px;
+    border-bottom: 3px solid var(--coral); display: inline-block;
+  }
+  p.just { text-align: justify; }
+
+  /* schedule */
+  .sched { display: grid; gap: 14px; }
+  .part { background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--navy); border-radius: 6px; padding: 16px 20px; }
+  .part h3 { margin: 0 0 6px; font-size: 19px; color: var(--navy); }
+  .part h3 span { color: var(--coral); margin-right: 8px; }
+  .part ul { margin: 0; padding-left: 20px; color: var(--muted); }
+
+  /* materials */
+  .mats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .mat { border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: #fff; }
+  .mat h3 { margin: 0 0 6px; font-size: 18px; color: var(--navy); }
+  .mat p { margin: 0 0 10px; color: var(--muted); font-size: 15px; }
+  .tag { font-size: 13px; padding: 2px 8px; border-radius: 10px; background: var(--soft); color: var(--muted); }
+
+  /* presenters */
+  .person { display: flex; gap: 26px; align-items: flex-start; margin-bottom: 36px; }
+  .photo {
+    flex: 0 0 170px; height: 200px; border-radius: 8px; background: var(--soft) center/cover no-repeat;
+    border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 13px;
+  }
+  .person h3 { margin: 0; font-size: 21px; color: var(--navy); }
+  .person h3 a { text-decoration: none; color: inherit; }
+  .person .role { color: var(--coral); font-weight: 600; font-size: 15px; margin: 2px 0 8px; }
+  .person p { margin: 0 0 6px; }
+
+  .logos { display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 30px 0 10px; }
+  .logos img { height: 52px; width: auto; }
+  footer { text-align: center; color: var(--muted); font-size: 14px; padding: 20px 0 40px; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    header.hero { padding: 52px 0 46px; }
+    section { padding: 44px 0; }
+    .person { flex-direction: column; }
+    .photo { flex-basis: auto; width: 150px; height: 180px; }
+    .logos img { height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <b>AGL Tutorial @ ADMA 2026</b>
+    <a href="#intro">Introduction</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#materials">Materials</a>
+    <a href="#presenters">Presenters</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="venue">ADMA 2026 Tutorial</div>
+    <h1>Agentic Graph Learning</h1>
+    <h2>Foundations and Frontiers</h2>
+    <p class="people"><a href="#li" style="color:#fff">Jianxin Li</a><sup>1</sup>, <a href="#qu" style="color:#fff">Liang Qu</a><sup>2</sup></p>
+    <p class="affil"><sup>1</sup> Edith Cowan University &nbsp;·&nbsp; <sup>2</sup> Griffith University</p>
+    <p class="when">Friday, 13 November 2026 &nbsp;·&nbsp; Hong Kong</p>
+    <div class="btns">
+      <!-- When a file is ready: put its link in href and remove class "soon" and the <small> label -->
+      <a class="btn soon" href="#">Tutorial Proposal <small>(coming soon)</small></a>
+      <a class="btn soon" href="#">Tutorial Slides <small>(coming soon)</small></a>
+      <a class="btn soon" href="#">Survey Paper <small>(coming soon)</small></a>
+    </div>
+  </div>
+</header>
+
+<section id="intro">
+  <div class="wrap">
+    <h2 class="sec">Introduction</h2>
+    <p class="just">
+      Graphs are everywhere, from social networks and molecules to knowledge graphs, traffic systems and citation networks.
+      Graph learning has evolved from shallow node embeddings to graph neural networks, graph transformers and, most recently,
+      large language models (LLMs) for graphs. Yet most of these methods still read a graph once, through a fixed view:
+      an LLM given a serialized graph cannot decide what to look at next, overflows its context on large graphs, and
+      struggles with exact multi-hop reasoning.
+    </p>
+    <p class="just">
+      <b>Agentic Graph Learning (AGL)</b> treats graph learning as an interactive process. An LLM agent plans its reasoning,
+      calls graph tools (neighbour retrieval, text search, graph algorithms and code execution), observes the results,
+      keeps a memory of the evidence, and decides when it has enough to answer. Multiple agents can further split the work,
+      for example by node, by subgraph or by role.
+    </p>
+    <p class="just">
+      This tutorial offers a systematic introduction to AGL: (1) the evolution of graph learning and the motivation for agents;
+      (2) a unified framework and taxonomy of single-agent and multi-agent AGL methods, organised by planning, tools, memory,
+      stopping and learning; (3) four open challenges, namely scalability and efficiency, reliability of the reasoning process,
+      generalization and structure understanding, together with future directions; and (4) datasets, benchmarks and resources
+      for getting started. We hope it lays a foundation and sparks new ideas for research on agentic graph learning.
+    </p>
+  </div>
+</section>
+
+<section id="schedule" class="alt">
+  <div class="wrap">
+    <h2 class="sec">Schedule</h2>
+    <div class="sched">
+      <div class="part">
+        <h3><span>1</span>Introduction</h3>
+        <ul>
+          <li>Graphs everywhere: applications and core graph learning problems</li>
+          <li>Evolution of graph learning: shallow embeddings, GNNs, graph transformers, LLMs for graphs</li>
+          <li>Why agentic graph learning?</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3><span>2</span>AGL Methods</h3>
+        <ul>
+          <li>2.1 Single-agent methods: a unified framework (planning, tools, memory, stop rule, learning) and representative methods</li>
+          <li>2.2 Multi-agent methods: when, who, how and what agents collaborate on</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3><span>3</span>Challenges &amp; Future Directions</h3>
+        <ul>
+          <li>Scalability &amp; efficiency, reliability of the process, generalization, structure understanding</li>
+          <li>Emerging research directions</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3><span>4</span>Resources</h3>
+        <ul>
+          <li>Text-attributed graph, knowledge graph QA and graph reasoning datasets</li>
+          <li>Benchmarks for evaluating graph agents</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3><span>5</span>Discussion</h3>
+        <ul>
+          <li>Open questions for the community, Q&amp;A</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="wrap">
+    <h2 class="sec">Materials</h2>
+    <div class="mats">
+      <div class="mat">
+        <h3>Tutorial Proposal</h3>
+        <p>Scope, outline and target audience of the tutorial.</p>
+        <span class="tag">Coming soon</span>
+      </div>
+      <div class="mat">
+        <h3>Tutorial Slides</h3>
+        <p>Full slide deck presented at ADMA 2026.</p>
+        <span class="tag">Coming soon</span>
+      </div>
+      <div class="mat">
+        <h3>Survey Paper</h3>
+        <p>A survey of agentic graph learning methods, challenges and resources.</p>
+        <span class="tag">Coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="presenters" class="alt">
+  <div class="wrap">
+    <h2 class="sec">Presenters</h2>
+
+    <div class="person" id="li">
+      <!-- Photo: save as images/jianxin_li.jpg, then replace the div below with
+           <div class="photo" style="background-image:url(images/jianxin_li.jpg)"></div> -->
+      <div class="photo">Photo</div>
+      <div>
+        <h3><a href="#">Prof. Jianxin Li</a></h3>
+        <div class="role">Edith Cowan University · Presenter</div>
+        <p class="just">[Biography to be added.]</p>
+        <p><a href="mailto:jianxin.li@ecu.edu.au">jianxin.li@ecu.edu.au</a></p>
+      </div>
+    </div>
+
+    <div class="person" id="qu">
+      <div class="photo">Photo</div>
+      <div>
+        <h3><a href="https://leo-q-316.github.io/">Dr. Liang Qu</a></h3>
+        <div class="role">Griffith University · Co-author</div>
+        <p class="just">[Biography to be added.]</p>
+        <p><a href="mailto:liang.qu@griffith.edu.au">liang.qu@griffith.edu.au</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2 class="sec">Contact</h2>
+    <p>For questions about the tutorial, please contact
+      <a href="mailto:jianxin.li@ecu.edu.au">jianxin.li@ecu.edu.au</a> or
+      <a href="mailto:liang.qu@griffith.edu.au">liang.qu@griffith.edu.au</a>.</p>
+    <div class="logos">
+      <img src="images/ecu.png" alt="Edith Cowan University">
+      <img src="images/griffith.png" alt="Griffith University">
+      <img src="images/adma2026.png" alt="ADMA 2026">
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 AGL Tutorial at ADMA 2026, Hong Kong</footer>
+
+</body>
+</html>
