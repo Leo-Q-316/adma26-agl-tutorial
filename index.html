@@ -71,6 +71,8 @@
   .part h3 { margin: 0 0 6px; font-size: 19px; color: var(--navy); }
   .part h3 span { color: var(--coral); margin-right: 8px; }
   .part ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .part h3 .time { float: right; font-style: normal; font-size: 15px; font-weight: 600; color: var(--coral); }
+  .part .sub { font-style: normal; font-weight: 600; color: var(--coral); }
 
   /* materials */
   .mats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
@@ -165,34 +167,41 @@
 <section id="schedule" class="alt">
   <div class="wrap">
     <h2 class="sec">Schedule</h2>
+    <p>The tutorial is planned for 90 minutes.</p>
     <div class="sched">
       <div class="part">
-        <h3><span>1</span>Welcome and Introduction</h3>
+        <h3><span>1</span>Welcome and Introduction<em class="time">20 mins</em></h3>
         <ul>
-          <li>1.1 Overview of Graph Learning and Its Applications</li>
-          <li>1.2 Motivation for Agentic Graph Learning</li>
+          <li>The tutorial team</li>
+          <li>Graphs everywhere and tasks on graphs: computation, retrieval and learning</li>
+          <li>How graph learning evolved: shallow embedding, GNNs, graph transformers, LLMs for graphs</li>
+          <li>Why agentic graph learning, and the taxonomy used in this tutorial</li>
         </ul>
       </div>
       <div class="part">
-        <h3><span>2</span>Definition and Taxonomy of Agentic Graph Learning</h3>
+        <h3><span>2</span>AGL Methods<em class="time">50 mins</em></h3>
         <ul>
-          <li>2.1 Problem Formulation of Agentic Graph Learning</li>
-          <li>2.2 Key Building Blocks of Agentic Graph Learning</li>
-          <li>2.3 Taxonomy of Existing AGL Methods</li>
+          <li>2.1 Single-agent methods <em class="sub">30 mins</em>: a unified framework (planning, tools, memory, learning) and representative methods</li>
+          <li>2.2 Multi-agent methods <em class="sub">20 mins</em>: when, who, how and what to collaborate; orchestrated and self-organizing methods</li>
         </ul>
       </div>
       <div class="part">
-        <h3><span>3</span>Agentic Graph Learning Methods</h3>
+        <h3><span>3</span>Challenges &amp; Future Directions<em class="time">10 mins</em></h3>
         <ul>
-          <li>3.1 Single-Agent Graph Learning</li>
-          <li>3.2 Multi-Agent Graph Learning</li>
+          <li>Comprehensive AGL benchmarks, graph world models, agentic graph exploration</li>
         </ul>
       </div>
       <div class="part">
-        <h3><span>4</span>Limitations, Challenges, and Future Directions</h3>
+        <h3><span>4</span>Resources</h3>
+        <ul>
+          <li>Datasets, benchmarks and tutorial materials</li>
+        </ul>
       </div>
       <div class="part">
-        <h3><span>5</span>Open Discussion</h3>
+        <h3><span>5</span>Discussion<em class="time">10 mins</em></h3>
+        <ul>
+          <li>Open questions for the community, Q&amp;A</li>
+        </ul>
       </div>
     </div>
   </div>
